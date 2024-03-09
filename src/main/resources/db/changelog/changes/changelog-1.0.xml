@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="create_configuration_table" author="aleks_gor">
+        <createTable tableName="configuration">
+            <column name="key" type="varchar(255)">
+                <constraints primaryKey="true" primaryKeyName="pk_configuration_key"/>
+            </column>
+            <column name="value" type="varchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_currencies_table" author="aleks_gor">
+        <createTable tableName="currencies">
+            <column name="currency_name" type="varchar(255)">
+                <constraints primaryKey="true" primaryKeyName="pk_currencies_currency_name"/>
+            </column>
+            <column name="currency_full_name" type="varchar(255)"/>
+            <column name="rates" type="varchar(5000)"/>
+            <column name="created_at" type="bigint"/>
+            <column name="updated_at" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="insert_configuration_data" author="den_ferek">
+        <insert tableName="configuration">
+            <column name="key" value="fetch.openExchange.baseUrl"/>
+            <column name="value" value="https://openexchangerates.org"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="key" value="fetch.openExchange.appId"/>
+            <column name="value" value="dd6bcb4ebb5b496d923f47ee88120bd3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
