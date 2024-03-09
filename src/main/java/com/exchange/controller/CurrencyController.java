@@ -28,11 +28,10 @@ public class CurrencyController {
     @GetMapping("/exchange-rates/{currency}")
     public ResponseEntity<ExchangeRate> getExchangeRates(@PathVariable("currency") String currency) {
         ExchangeRate exchangeRate = currencyService.getExchangeRates(currency);
-        if (exchangeRate != null) {
-            return new ResponseEntity<>(exchangeRate, HttpStatus.OK);
-        } else {
+        if (exchangeRate == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(exchangeRate, HttpStatus.OK);
     }
 
     // Add a new currency
